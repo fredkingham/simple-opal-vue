@@ -1,0 +1,39 @@
+{% load render_bundle from webpack_loader %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <title>Django Vue Integration</title>
+    {% render_bundle 'app' 'css' %}
+
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div id="app">
+        {% block contents %}
+        <div class='something'>
+        hello there
+        </div>
+        <app></app>
+        {% verbatim %}
+        {{ schema.trees }}
+        {% endverbatim %}
+        {% endblock %}
+      </div>
+    </div>
+    {% render_bundle 'app' 'js' %}
+    <script>
+      {% block vue_instance %}
+      new Vue({
+        el: '#app',
+        data: function(){
+          return {schema: {{ schema }}}
+        }
+      })
+      {% endblock %}
+    </script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+{% extends "opal_vue/vue_base.html" %}
+
+{% block contents %}
+hello
+<demographics-form :formInstance=formInstance></demographics-form>
+there
+
+{% endblock %}
+{% block vue_instance %}
+  new Vue({
+    el: '#app',
+    data: function(){
+      return {
+        schema: {{ schema }},
+        formInstance: {}
+      }
+    }
+  })
+{% endblock %}
