@@ -19,17 +19,12 @@ module.exports = {
         config
             .plugin('BundleTracker')
             .use(BundleTracker, [{filename: '../frontend/webpack-stats.json'}])
-
-        config.resolve.alias.set(
-          "OurModule", "/Users/fredkingham/Scripts/ohcdev/django-vue/opal_example_app/opal_example_app/static/js"
-        )
-
         let entry = config.entry('app');
-        // let entries = getPluginConfigs();
+        let entries = getPluginConfigs();
 
-        // entries.forEach(entryPoint => {
-        //   entry.add(entryPoint);
-        // });
+        entries.forEach(entryPoint => {
+          entry.add(entryPoint);
+        });
 
         entry.add('./src/main.js')
 
